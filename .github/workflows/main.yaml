@@ -2,5 +2,6 @@ on: push
 jobs:
   cancel_manual:
     runs-on: ubuntu-latest
-    - name: sleeping 600 seconds
-      run: sleep 600
+    steps:
+      - name: sleeping 600 seconds
+        run: sleep 600
