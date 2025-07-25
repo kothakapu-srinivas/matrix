@@ -1,16 +1,13 @@
-name: matrix
-on: push
-jobs:
-  matrix-os-job:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    
-    steps:
-      - name: Always run
-        run: echo "Running on ${{ matrix.os }}"    
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Deployment environment"
+        required: true
+        default: staging
 
-      - name: Runs only on ubuntu-latest
-        if:  matrix.os == 'ubuntu-latest'
-        run: echo "This runs only on ubuntu-latest"
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploying to ${{ github.event.inputs.environment }}"
