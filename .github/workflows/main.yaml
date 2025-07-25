@@ -1,13 +1,6 @@
-on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: "Deployment environment"
-        required: true
-        default: staging
-
+on: push
 jobs:
-  deploy:
+  cancel_manual:
     runs-on: ubuntu-latest
-    steps:
-      - run: echo "Deploying to ${{ github.event.inputs.environment }}"
+    - name: sleeping 600 seconds
+      run: sleep 600
